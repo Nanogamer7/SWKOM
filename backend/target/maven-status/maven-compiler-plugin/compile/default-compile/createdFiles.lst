@@ -1,0 +1,9 @@
+backend/src/main/java/org/openapitools/api/UploadApi.class
+org/openapitools/OpenApiGeneratorApplication.class
+org/openapitools/configuration/SpringDocConfiguration.class
+backend/src/main/java/org/openapitools/api/UploadApiController.class
+backend/src/main/java/org/openapitools/api/HelloworldApiController.class
+org/openapitools/api/HelloworldApi.class
+org/openapitools/api/ApiUtil.class
+org/openapitools/configuration/HomeController.class
+org/openapitools/RFC3339DateFormat.class
