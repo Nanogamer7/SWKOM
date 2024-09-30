@@ -1,0 +1,23 @@
+services:
+  backend:
+    build: ./backend
+    container_name: paperless-REST
+    ports:
+      - "8081:8081"
+    networks:
+      - app-network
+
+  frontend:
+    build: ./frontend
+    container_name: paperless-WEB
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+networks:
+  app-network:
+    driver: bridge
