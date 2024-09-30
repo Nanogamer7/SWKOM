@@ -1,0 +1,23 @@
+<!-- Stylische Navbar -->
+<nav style="display: flex; justify-content: space-around; align-items: center; padding: 1rem; background: #007BFF; color: white; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+  <h2 style="margin: 0;">Meine App</h2>
+  <div>
+    <a routerLink="/page-one" routerLinkActive="active" style="margin: 0 1rem; text-decoration: none; color: white; font-weight: bold;">Seite Eins</a>
+    <a routerLink="/page-two" routerLinkActive="active" style="margin: 0 1rem; text-decoration: none; color: white; font-weight: bold;">Seite Zwei</a>
+    <a routerLink="/page-three" routerLinkActive="active" style="margin: 0 1rem; text-decoration: none; color: white; font-weight: bold;">Seite Drei</a>
+  </div>
+</nav>
+
+<!-- Platz für die Seiteninhalte -->
+<main style="padding: 2rem;">
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Optionale Stile für die Navbar und aktiven Links -->
+<style>
+  a.active {
+    background-color: #0056b3;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+  }
+</style>
