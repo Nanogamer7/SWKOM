@@ -1,11 +1,11 @@
 # Stage 1: Build the Spring Boot application using Maven and JDK 21
-FROM maven:3.8.4-openjdk-17 AS build
+FROM maven:3-eclipse-temurin-21-alpine AS build
 WORKDIR /app
 COPY . .
 RUN mvn clean package
 
 # Stage 2: Create a minimal runtime environment using JDK 21
-FROM openjdk:17-jdk-alpine
+FROM openjdk:21
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
