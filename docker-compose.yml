@@ -33,7 +33,7 @@ services:
       - app-network
 
   rabbitmq:
-    image: rabbitmq:latest
+    image: rabbitmq:management
     container_name: paperless-rabbitmq
     ports:
       - "5672:5672"
