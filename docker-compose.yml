@@ -6,6 +6,9 @@ services:
       - "8081:8081"
     networks:
       - app-network
+    depends_on:
+      - database
+      - rabbitmq
 
   frontend:
     build: ./frontend
@@ -16,6 +19,30 @@ services:
       - app-network
     depends_on:
       - backend
+
+  database:
+    image: postgres:latest
+    container_name: paperless-db
+    environment:
+      POSTGRES_USER: paperless
+      POSTGRES_PASSWORD: paperless
+      POSTGRES_DB: paperlessDB
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: paperless-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rabbitmq
+    networks:
+      - app-network
 
 networks:
   app-network:
