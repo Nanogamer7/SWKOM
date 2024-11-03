@@ -4,11 +4,15 @@ services:
     container_name: paperless-REST
     ports:
       - "8081:8081"
+    environment:
+      - DATABASE_URL=jdbc:postgresql://database:5432/paperlessDB
     networks:
       - app-network
     depends_on:
-      - database
-      - rabbitmq
+      database:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_started
 
   frontend:
     build: ./frontend
@@ -31,6 +35,11 @@ services:
       - "5432:5432"
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U paperless"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   rabbitmq:
     image: rabbitmq:management
