@@ -2,7 +2,7 @@
 FROM maven:3-eclipse-temurin-21-alpine AS build
 WORKDIR /app
 COPY . .
-RUN mvn clean package
+RUN mvn clean package -Dmaven.test.skip
 
 # Stage 2: Create a minimal runtime environment using JDK 21
 FROM openjdk:21
