@@ -3,9 +3,11 @@ package at.fhtw.paperless.api;
 import at.fhtw.paperless.dal.models.DocumentMetadata;
 import at.fhtw.paperless.dal.repositories.DocumentMetadataRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,9 +18,11 @@ import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class UploadApiController implements UploadApi {
 
     final DocumentMetadataRepository documentMetadataRepository;
+    final RabbitTemplate rabbitTemplate;
 
     @Override
     public ResponseEntity<?> uploadPost(MultipartFile file, String description) {
@@ -36,8 +40,11 @@ public class UploadApiController implements UploadApi {
 
             document.close();
 
-            return ResponseEntity.ok("Metadata saved successfully.");
-        } catch (IOException e) {
+            rabbitTemplate.convertAndSend("documentQueue", "Document uploaded: " + file.getOriginalFilename());
+            log.info("Message sent to RabbitMQ for document: {}", file.getOriginalFilename());
+
+            return ResponseEntity.accepted().body("Metadata saved, document queued for processing");
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error processing PDF file: " + e.getMessage());
         }
