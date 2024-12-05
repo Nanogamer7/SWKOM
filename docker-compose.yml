@@ -6,6 +6,8 @@ services:
       - "8081:8081"
     environment:
       - DATABASE_URL=jdbc:postgresql://paperless-db:5432/paperlessDB
+    volumes:
+      - maven-repo:/root/.m2
     networks:
       - app-network
     depends_on:
@@ -52,6 +54,9 @@ services:
       RABBITMQ_DEFAULT_PASS: rabbitmq
     networks:
       - app-network
+
+volumes:
+    maven-repo:
 
 networks:
   app-network:
