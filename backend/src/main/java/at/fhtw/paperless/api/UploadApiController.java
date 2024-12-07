@@ -2,6 +2,10 @@ package at.fhtw.paperless.api;
 
 import at.fhtw.paperless.dal.models.DocumentMetadata;
 import at.fhtw.paperless.dal.repositories.DocumentMetadataRepository;
+import io.minio.BucketExistsArgs;
+import io.minio.MakeBucketArgs;
+import io.minio.MinioClient;
+import io.minio.PutObjectArgs;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.Loader;
@@ -13,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.Objects;
 
 @RestController
@@ -23,6 +26,7 @@ public class UploadApiController implements UploadApi {
 
     final DocumentMetadataRepository documentMetadataRepository;
     final RabbitTemplate rabbitTemplate;
+    final MinioClient minio;
 
     @Override
     public ResponseEntity<?> uploadPost(MultipartFile file, String description) {
@@ -31,6 +35,19 @@ public class UploadApiController implements UploadApi {
         }
 
         try {
+            if (!minio.bucketExists(BucketExistsArgs.builder().bucket("paperless").build())) {
+                minio.makeBucket(MakeBucketArgs.builder().bucket("paperless").build());
+            }
+
+            minio.putObject(
+                    PutObjectArgs
+                            .builder()
+                            .bucket("paperless")
+                            .object(file.getOriginalFilename()) // TODO: ensure no file path
+                            .stream(file.getInputStream(), file.getSize(), -1)
+                            .build()
+            );
+
             // Load PDF file
             PDDocument document = Loader.loadPDF(file.getBytes());
             DocumentMetadata metadata = getDocumentMetadata(file, document);
@@ -40,7 +57,7 @@ public class UploadApiController implements UploadApi {
 
             document.close();
 
-            rabbitTemplate.convertAndSend("documentQueue", "Document uploaded: " + file.getOriginalFilename());
+            rabbitTemplate.convertAndSend("documentQueue", Objects.requireNonNull(file.getOriginalFilename()));
             log.info("Message sent to RabbitMQ for document: {}", file.getOriginalFilename());
 
             return ResponseEntity.accepted().body("Metadata saved, document queued for processing");
