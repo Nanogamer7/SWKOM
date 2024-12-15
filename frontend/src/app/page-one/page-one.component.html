@@ -1,5 +1,15 @@
-<h1 style="text-align: center; color: #007BFF;">Willkommen auf Seite Eins</h1>
-<div style="text-align: center; margin-top: 2rem;">
-  <button (click)="getHelloWorld()" style="padding: 0.75rem 1.5rem; border: none; background-color: #28a745; color: white; border-radius: 5px; font-size: 1rem; cursor: pointer;">Get Hello World</button>
-  <p style="margin-top: 1rem; font-size: 1.2rem; color: #333;">{{ message }}</p>
+<div class="container my-5">
+  <h1 class="text-center text-primary mb-4">Dokument hochladen</h1>
+  <div class="card p-4 shadow-sm">
+    <div class="mb-3">
+      <label class="form-label">Bitte wähle ein PDF aus:</label>
+      <input type="file" (change)="onFileSelected($event)" accept="application/pdf" class="form-control" />
+    </div>
+    <!-- Button ist disabled, solange keine Datei ausgewählt -->
+    <button (click)="uploadDocument()"
+            [disabled]="!selectedFile"
+            class="btn btn-success"
+            style="cursor: pointer;">Hochladen</button>
+    <div *ngIf="uploadMessage" class="mt-3 alert alert-info">{{ uploadMessage }}</div>
+  </div>
 </div>

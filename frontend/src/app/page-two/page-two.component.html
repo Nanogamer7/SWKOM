@@ -1,2 +1,28 @@
-<h1 style="text-align: center; color: #007BFF;">Seite Zwei</h1>
-<p style="text-align: center; font-size: 1.2rem; margin-top: 2rem; color: #555;">Diese Seite enthält allgemeine Informationen und Text.</p>
+<div class="container my-5">
+  <h1 class="text-center text-primary mb-4">Dokumente durchsuchen</h1>
+  <div class="input-group mb-3">
+    <input [(ngModel)]="searchTerm" type="text" class="form-control" placeholder="Suchbegriff eingeben" />
+    <button (click)="searchDocuments()" class="btn btn-primary">Suchen</button>
+  </div>
+
+  <div *ngIf="searchResults && searchResults.length > 0" class="mt-4">
+    <h2>Suchergebnisse:</h2>
+    <ul class="list-group">
+      <li *ngFor="let doc of searchResults" class="list-group-item d-flex justify-content-between align-items-center">
+        {{ doc.fileName }} ({{ doc.pageCount }} Seiten)
+        <button (click)="viewDocument(doc.fileName)" class="btn btn-info btn-sm">Ansehen</button>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="searchResults && searchResults.length === 0" class="mt-4 alert alert-warning">
+    Keine Treffer gefunden.
+  </div>
+
+  <div *ngIf="pdfContent" class="mt-4">
+    <h2>Dokumentanzeige:</h2>
+    <div style="height:600px;" class="border">
+      <iframe [src]="pdfContent" class="w-100 h-100" style="border:none;"></iframe>
+    </div>
+  </div>
+</div>
