@@ -4,3 +4,7 @@ frontend/node_modules 02.02.25/
 frontend/.vscode/
 
 .DS_Store
+
+.idea
+
+backend/.idea
