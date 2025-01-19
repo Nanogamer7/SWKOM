@@ -1,6 +1,8 @@
 package at.fhtw.paperless.ocr;
 
 import at.fhtw.paperless.ocr.config.RabbitMQConfig;
+import at.fhtw.paperless.ocr.entities.OCRDocument;
+import at.fhtw.paperless.ocr.repositories.OCRDocumentRepository;
 import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
 import io.minio.errors.*;
@@ -18,6 +20,7 @@ import java.security.NoSuchAlgorithmException;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
@@ -31,15 +34,17 @@ public class QueueListener {
 
     private final MinioClient minioClient;
     private final RabbitTemplate rabbitTemplate;
+    private final OCRDocumentRepository ocrDocumentRepository;
 
     @RabbitListener(queues = RabbitMQConfig.QUEUE_NAME)
-    public void receive(String filename) {
-        System.out.println(filename);
+    public void receive(String message) {
+
+        System.out.println(message);
 
         try (InputStream stream = minioClient.getObject(GetObjectArgs
                 .builder()
                 .bucket("paperless")
-                .object(filename)
+                .object(message)
                 .build())) {
 
 
@@ -50,10 +55,13 @@ public class QueueListener {
 
             System.out.println(text);
 
-            rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_NAME, text);
+            saveToElasticSearch(message, text);
+
+            rabbitTemplate.convertAndSend(RabbitMQConfig.OUTPUT_QUEUE_NAME, true);
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -99,4 +107,11 @@ public class QueueListener {
         return output.toString();
     }
 
+    private void saveToElasticSearch(String filename, String text) {
+        OCRDocument document = new OCRDocument();
+        document.setFilename(filename);
+        document.setText(text);
+
+        ocrDocumentRepository.save(document);
+    }
 }
