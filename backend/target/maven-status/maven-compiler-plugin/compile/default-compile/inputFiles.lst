@@ -1,5 +1,6 @@
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/BackendApplication.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/RFC3339DateFormat.java
+/Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/api/DocumentController.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/api/HelloworldApi.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/api/HelloworldApiController.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/api/SearchController.java

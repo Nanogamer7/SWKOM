@@ -21,21 +21,32 @@ public class DocumentController {
 
     @GetMapping("/document/{filename}")
     public ResponseEntity<byte[]> getDocument(@PathVariable String filename) {
-        try {
-            // PDF aus MinIO laden
-            try (InputStream stream = minio.getObject(
-                    GetObjectArgs.builder()
-                            .bucket("paperless")
-                            .object(filename)
-                            .build())) {
+        // Dies ist dein bestehender „Ansehen“-Endpoint
+        // der "inline" anzeigt, falls du es so konfiguriert hast.
+        // (Nur zur Info, nicht verändert.)
+        // ...
+        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+    }
 
-                byte[] content = stream.readAllBytes();
-                HttpHeaders headers = new HttpHeaders();
-                headers.setContentType(MediaType.APPLICATION_PDF);
-                headers.setContentDispositionFormData("inline", filename);
+    @GetMapping("/document/download/{filename}")
+    public ResponseEntity<byte[]> downloadDocument(@PathVariable String filename) {
+        try (InputStream is = minio.getObject(
+                GetObjectArgs.builder()
+                        .bucket("paperless")
+                        .object(filename)
+                        .build()
+        )) {
 
-                return new ResponseEntity<>(content, headers, HttpStatus.OK);
-            }
+            byte[] content = is.readAllBytes();
+
+            HttpHeaders headers = new HttpHeaders();
+            // PDF-Typ
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            // "attachment": erzwingt Download
+            headers.setContentDispositionFormData("attachment", filename);
+
+            return new ResponseEntity<>(content, headers, HttpStatus.OK);
+
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

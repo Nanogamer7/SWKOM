@@ -1,4 +1,10 @@
+version: "3.9"
+
 services:
+
+  # ----------------------------------
+  # Spring Boot Backend (paperless-rest)
+  # ----------------------------------
   paperless-rest:
     build: ./backend
     container_name: paperless-rest
@@ -16,7 +22,12 @@ services:
         condition: service_healthy
       paperless-rabbitmq:
         condition: service_healthy
+      paperless-elasticsearch:
+        condition: service_healthy
 
+  # ----------------------------------
+  # Angular Frontend (paperless-web)
+  # ----------------------------------
   paperless-web:
     build: ./frontend
     container_name: paperless-web
@@ -27,6 +38,9 @@ services:
     depends_on:
       - paperless-rest
 
+  # ----------------------------------
+  # OCR Service (paperless-ocr)
+  # ----------------------------------
   paperless-ocr:
     build: ./ocr
     container_name: paperless-ocr
@@ -39,9 +53,13 @@ services:
     depends_on:
       paperless-rabbitmq:
         condition: service_healthy
-      paperless-elasticsearch:
-        condition: service_healthy
+      # Optional, falls der OCR-Service auch auf ES zugreifen soll:
+      # paperless-elasticsearch:
+      #   condition: service_healthy
 
+  # ----------------------------------
+  # PostgreSQL DB (paperless-db)
+  # ----------------------------------
   paperless-db:
     image: postgres:latest
     container_name: paperless-db
@@ -59,6 +77,9 @@ services:
       timeout: 3s
       retries: 10
 
+  # ----------------------------------
+  # RabbitMQ (paperless-rabbitmq)
+  # ----------------------------------
   paperless-rabbitmq:
     image: rabbitmq:management
     container_name: paperless-rabbitmq
@@ -76,6 +97,9 @@ services:
       timeout: 3s
       retries: 10
 
+  # ----------------------------------
+  # MinIO (paperless-minio)
+  # ----------------------------------
   paperless-minio:
     image: minio/minio:latest
     container_name: paperless-minio
@@ -91,15 +115,15 @@ services:
       - "9000:9000"
       - "9090:9090"
 
+  # ----------------------------------
+  # Elasticsearch (paperless-elasticsearch)
+  # ----------------------------------
   paperless-elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
-    container_name: paperless-elasticsearch
+    #container_name: paperless-elasticsearch
     environment:
       - discovery.type=single-node
-      - ELASTIC_PASSWORD=elastic
       - xpack.security.enabled=false
-      - http.host=0.0.0.0
-      - transport.host=127.0.0.1
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -112,10 +136,9 @@ services:
       retries: 5
       start_period: 30s
 
-
 volumes:
-    maven-repo:
-    minio:
+  maven-repo:
+  minio:
 
 networks:
   app-network:

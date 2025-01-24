@@ -22,8 +22,8 @@ public interface UploadApi {
 
     @PostMapping("/upload")
     default ResponseEntity<?> uploadPost(
-        @Parameter(name = "file", description = "", required = true) @RequestPart(value = "file", required = true) MultipartFile file,
-        @Parameter(name = "description", description = "") @Valid @RequestParam(value = "description", required = false) String description
+            @Parameter(name = "file", description = "", required = true) @RequestPart(value = "file", required = true) MultipartFile file,
+            @Parameter(name = "description", description = "") @Valid @RequestParam(value = "description", required = false) String description
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 

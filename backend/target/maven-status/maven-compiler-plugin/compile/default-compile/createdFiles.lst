@@ -1,4 +1,5 @@
 at/fhtw/paperless/api/HelloworldApi.class
+at/fhtw/paperless/api/DocumentController.class
 at/fhtw/paperless/dal/repositories/DocumentMetadataRepository.class
 at/fhtw/paperless/configuration/RabbitMQConfig.class
 at/fhtw/paperless/configuration/SpringDocConfiguration.class
