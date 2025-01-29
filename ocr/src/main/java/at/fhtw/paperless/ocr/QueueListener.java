@@ -57,7 +57,7 @@ public class QueueListener {
 
             saveToElasticSearch(message, text);
 
-            rabbitTemplate.convertAndSend(RabbitMQConfig.OUTPUT_QUEUE_NAME, true);
+            rabbitTemplate.convertAndSend(RabbitMQConfig.OUTPUT_QUEUE_NAME, message);
 
         } catch (Exception e) {
             e.printStackTrace();

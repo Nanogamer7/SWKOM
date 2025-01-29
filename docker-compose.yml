@@ -53,9 +53,8 @@ services:
     depends_on:
       paperless-rabbitmq:
         condition: service_healthy
-      # Optional, falls der OCR-Service auch auf ES zugreifen soll:
-      # paperless-elasticsearch:
-      #   condition: service_healthy
+      paperless-elasticsearch:
+        condition: service_healthy
 
   # ----------------------------------
   # PostgreSQL DB (paperless-db)
@@ -120,7 +119,7 @@ services:
   # ----------------------------------
   paperless-elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
-    #container_name: paperless-elasticsearch
+    container_name: paperless-elasticsearch
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false

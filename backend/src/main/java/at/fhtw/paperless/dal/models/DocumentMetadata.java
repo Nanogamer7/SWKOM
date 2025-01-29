@@ -19,6 +19,7 @@ public class DocumentMetadata {
     private String fileName;
     private String filePath;
     private String fileSize;
+    private boolean scanned = false;
 
     private String title;
     private String author;
