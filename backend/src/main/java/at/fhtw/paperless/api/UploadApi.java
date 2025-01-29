@@ -10,16 +10,14 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("${openapi.paperless.base-path:}")
 @Validated
 public interface UploadApi {
 
+    @CrossOrigin(origins = "http://localhost")
     @PostMapping("/upload")
     default ResponseEntity<?> uploadPost(
             @Parameter(name = "file", description = "", required = true) @RequestPart(value = "file", required = true) MultipartFile file,
