@@ -5,38 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d19c047b-4399-4056-890d-e052f1116ae0" name="Changes" comment="changed rabbitmq image to :management">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/OcrSearchController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/dal/repositories/BackendApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/dal/repositories/RFC3339DateFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/elasticsearch/OcrDocument.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/elasticsearch/OcrDocumentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/BackendApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/RFC3339DateFormat.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/DocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/DocumentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/HelloworldApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/HelloworldApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/SearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/UploadApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/UploadApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/UploadApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/UploadApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/OcrSearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/OcrSearchController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/configuration/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/configuration/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/configuration/MinioConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/configuration/MinioConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/configuration/SpringDocConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/configuration/SpringDocConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/dal/models/DocumentMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/dal/models/DocumentMetadata.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/dal/repositories/DocumentMetadataRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/dal/repositories/DocumentMetadataRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/openapi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/openapi.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/at/fhtw/paperless/backend/BackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/at/fhtw/paperless/backend/BackendApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/openapi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/openapi.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbHealthCheck.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/page-one/page-one.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/page-one/page-one.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/page-one/page-one.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/page-one/page-one.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/page-three/page-three.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/page-three/page-three.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/page-two/page-two.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/page-two/page-two.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/page-two/page-two.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/page-two/page-two.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ocr/src/main/java/at/fhtw/paperless/ocr/OcrApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ocr/src/main/java/at/fhtw/paperless/ocr/OcrApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ocr/src/main/java/at/fhtw/paperless/ocr/QueueListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/ocr/src/main/java/at/fhtw/paperless/ocr/QueueListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ocr/src/main/java/at/fhtw/paperless/ocr/entities/OCRDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/ocr/src/main/java/at/fhtw/paperless/ocr/entities/OCRDocument.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +108,9 @@
       <workItem from="1734275015516" duration="120000" />
       <workItem from="1734275167668" duration="13837000" />
       <workItem from="1737386197045" duration="15312000" />
-      <workItem from="1737563203965" duration="15052000" />
+      <workItem from="1737563203965" duration="16620000" />
+      <workItem from="1738257214619" duration="7017000" />
+      <workItem from="1738265274137" duration="1959000" />
     </task>
     <task id="LOCAL-00001" summary="updated docker-compose.yml to also setup a database container using postgres and defining the port as 5432">
       <option name="closed" value="true" />

@@ -18,8 +18,7 @@ public class OcrSearchController {
 
     @GetMapping("/search-ocr")
     public ResponseEntity<List<OcrDocument>> searchOcrByText(@RequestParam String term) {
-        // Hier verwenden wir die Methode: findByTextContainingIgnoreCase
-        // die wir im OcrDocumentRepository definiert haben
+
         List<OcrDocument> results = ocrDocumentRepository.findByTextContainingIgnoreCase(term);
 
         return ResponseEntity.ok(results);

@@ -3,6 +3,8 @@ package at.fhtw.paperless.api;
 import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,32 +22,51 @@ public class DocumentController {
     private final MinioClient minio;
 
     @GetMapping("/document/{filename}")
-    public ResponseEntity<byte[]> getDocument(@PathVariable String filename) {
-        // Dies ist dein bestehender „Ansehen“-Endpoint
-        // der "inline" anzeigt, falls du es so konfiguriert hast.
-        // (Nur zur Info, nicht verändert.)
-        // ...
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+    public ResponseEntity<Resource> viewDocument(@PathVariable String filename) {
+        try {
+            InputStream is = minio.getObject(
+                    GetObjectArgs.builder()
+                            .bucket("paperless")
+                            .object(filename)
+                            .build()
+            );
+
+            InputStreamResource resource = new InputStreamResource(is);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + filename + "\"");
+            headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .body(resource);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @GetMapping("/document/download/{filename}")
-    public ResponseEntity<byte[]> downloadDocument(@PathVariable String filename) {
-        try (InputStream is = minio.getObject(
-                GetObjectArgs.builder()
-                        .bucket("paperless")
-                        .object(filename)
-                        .build()
-        )) {
+    public ResponseEntity<Resource> downloadDocument(@PathVariable String filename) {
+        try {
+            InputStream is = minio.getObject(
+                    GetObjectArgs.builder()
+                            .bucket("paperless")
+                            .object(filename)
+                            .build()
+            );
 
-            byte[] content = is.readAllBytes();
+            InputStreamResource resource = new InputStreamResource(is);
 
             HttpHeaders headers = new HttpHeaders();
-            // PDF-Typ
             headers.setContentType(MediaType.APPLICATION_PDF);
-            // "attachment": erzwingt Download
-            headers.setContentDispositionFormData("attachment", filename);
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"");
+            headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 
-            return new ResponseEntity<>(content, headers, HttpStatus.OK);
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .body(resource);
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

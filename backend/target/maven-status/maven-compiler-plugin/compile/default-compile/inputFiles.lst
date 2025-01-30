@@ -1,8 +1,7 @@
-/Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/BackendApplication.java
-/Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/RFC3339DateFormat.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/api/DocumentController.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/api/HelloworldApi.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/api/HelloworldApiController.java
+/Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/api/OcrSearchController.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/api/SearchController.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/api/UploadApi.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/api/UploadApiController.java
@@ -12,4 +11,8 @@
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/configuration/RabbitMQConfig.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/configuration/SpringDocConfiguration.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/dal/models/DocumentMetadata.java
+/Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/dal/repositories/BackendApplication.java
 /Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/dal/repositories/DocumentMetadataRepository.java
+/Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/dal/repositories/RFC3339DateFormat.java
+/Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/elasticsearch/OcrDocument.java
+/Users/mohsan/Downloads/SWKOM/backend/src/main/java/at/fhtw/paperless/elasticsearch/OcrDocumentRepository.java

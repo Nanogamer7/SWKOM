@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BackendApplicationTests {
+public class BackendApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
+		// Dieser Test überprüft, ob der Spring Application Context korrekt geladen wird.
 	}
-
 }
