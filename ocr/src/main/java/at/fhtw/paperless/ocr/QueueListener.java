@@ -5,7 +5,6 @@ import at.fhtw.paperless.ocr.entities.OCRDocument;
 import at.fhtw.paperless.ocr.repositories.OCRDocumentRepository;
 import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
-import io.minio.errors.*;
 import lombok.RequiredArgsConstructor;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -15,12 +14,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
@@ -51,7 +47,7 @@ public class QueueListener {
             //Convert PDF to image as tesseract does not support pdfs
             List<BufferedImage> images = convertPDFToImage(stream);
 
-            String text = exctractTextFromImages(images);
+            String text = extractTextFromImages(images);
 
             System.out.println(text);
 
@@ -65,7 +61,7 @@ public class QueueListener {
         }
     }
 
-    private List<BufferedImage> convertPDFToImage(InputStream inputStream) throws IOException {
+    protected List<BufferedImage> convertPDFToImage(InputStream inputStream) throws IOException {
         PDDocument pdf = PDDocument.load(inputStream);
         PDFRenderer renderer = new PDFRenderer(pdf);
 
@@ -97,7 +93,7 @@ public class QueueListener {
         }
     }
 
-    private String exctractTextFromImages(List<BufferedImage> images) {
+    protected String extractTextFromImages(List<BufferedImage> images) {
         StringBuilder output = new StringBuilder();
 
         for(BufferedImage image : images) {
