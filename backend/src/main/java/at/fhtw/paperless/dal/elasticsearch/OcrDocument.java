@@ -1,4 +1,4 @@
-package at.fhtw.paperless.elasticsearch;
+package at.fhtw.paperless.dal.elasticsearch;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

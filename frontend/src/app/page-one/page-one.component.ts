@@ -26,7 +26,7 @@ export class PageOneComponent {
     formData.append('file', this.selectedFile);
     formData.append('description', 'Uploaded via frontend UI');
 
-    this.http.post('http://localhost:8081/upload', formData, { responseType: 'text' }).subscribe(
+    this.http.post('http://localhost:8081/document', formData, { responseType: 'text' }).subscribe(
       response => {
         this.uploadMessage = 'Datei erfolgreich hochgeladen!';
       },

@@ -1,4 +1,4 @@
-package at.fhtw.paperless.elasticsearch;
+package at.fhtw.paperless.dal.elasticsearch;
 
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 

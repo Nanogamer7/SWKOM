@@ -25,7 +25,7 @@ export class PageTwoComponent {
     }
 
     this.http
-      .get<any[]>(`http://localhost:8081/search?term=${encodeURIComponent(this.searchTerm)}`)
+      .get<any[]>(`http://localhost:8081/search/by_filename?term=${encodeURIComponent(this.searchTerm)}`)
       .subscribe(
         (data) => {
           this.searchResults = data;
@@ -43,7 +43,7 @@ export class PageTwoComponent {
     }
 
     this.http
-      .get<any[]>(`http://localhost:8081/search-ocr?term=${encodeURIComponent(this.searchTerm)}`)
+      .get<any[]>(`http://localhost:8081/search/by_content?term=${encodeURIComponent(this.searchTerm)}`)
       .subscribe(
         (data) => {
           // Hier speichern wir die Treffer in ocrResults
