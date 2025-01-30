@@ -13,6 +13,8 @@ services:
     environment:
       - DATABASE_URL=jdbc:postgresql://paperless-db:5432/paperlessDB
       - MINIO_URL=http://paperless-minio:9000
+      - ELASTIC_URL=http://paperless-elasticsearch:9200
+      - RABBITMQ_HOST=paperless-rabbitmq
     volumes:
       - maven-repo:/root/.m2
     networks:

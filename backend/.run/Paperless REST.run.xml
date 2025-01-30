@@ -2,6 +2,9 @@
   <configuration default="false" name="Paperless REST" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <envs>
       <env name="DATABASE_URL" value="jdbc:postgresql://localhost:5432/paperlessDB" />
+      <env name="ELASTIC_URL" value="http://localhost:9200" />
+      <env name="MINIO_URL" value="http://localhost:9000" />
+      <env name="RABBITMQ_HOST" value="localhost" />
     </envs>
     <module name="backend" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="at.fhtw.paperless.BackendApplication" />

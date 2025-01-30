@@ -23,6 +23,9 @@ public class SearchController implements SearchApi {
     @Override
     public ResponseEntity<List<DocumentMetadata>> byFilename(String term) {
         List<DocumentMetadata> results = documentMetadataRepository.findByFileNameContainingIgnoreCase(term);
+        if (results.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(results);
     }
 
@@ -31,7 +34,9 @@ public class SearchController implements SearchApi {
         // Hier verwenden wir die Methode: findByTextContainingIgnoreCase
         // die wir im OcrDocumentRepository definiert haben
         List<OcrDocument> results = ocrDocumentRepository.findByTextContainingIgnoreCase(term);
-
+        if (results.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(results);
     }
 }

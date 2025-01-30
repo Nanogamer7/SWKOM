@@ -31,6 +31,10 @@ export class PageTwoComponent {
           this.searchResults = data;
         },
         (error) => {
+          if (error.status === 404) {
+            this.searchResults = [];
+            return;
+          }
           console.error('Fehler bei der Suche:', error);
         }
       );
@@ -51,6 +55,10 @@ export class PageTwoComponent {
           console.log('OCR-Suchergebnisse:', data);
         },
         (error) => {
+          if (error.status === 404) {
+            this.ocrResults = [];
+            return;
+          }
           console.error('Fehler bei der OCR-Suche:', error);
         }
       );
