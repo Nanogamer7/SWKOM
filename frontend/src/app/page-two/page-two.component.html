@@ -1,2 +1,86 @@
-<h1 style="text-align: center; color: #007BFF;">Seite Zwei</h1>
-<p style="text-align: center; font-size: 1.2rem; margin-top: 2rem; color: #555;">Diese Seite enthält allgemeine Informationen und Text.</p>
+<div class="container my-5">
+  <h1 class="text-center text-primary mb-4">Dokumente durchsuchen</h1>
+
+  <!-- Eingabefeld und Buttons -->
+  <div class="input-group mb-3">
+    <input [(ngModel)]="searchTerm" type="text" class="form-control" placeholder="Suchbegriff eingeben" />
+    <!-- Bestehende DB-Suche (Dateiname) -->
+    <button (click)="searchDocuments()" class="btn btn-primary mx-1">DB-Suche (Dateiname)</button>
+    <!-- Neue OCR-Suche (Inhalt) -->
+    <button (click)="searchOcrDocuments()" class="btn btn-secondary">OCR-Suche (Inhalt)</button>
+  </div>
+
+  <!-- Bereich: DB-Suche -->
+  <div class="mt-4">
+    <h2>Dateiname-Suchergebnisse:</h2>
+    <div *ngIf="searchResults && searchResults.length > 0">
+      <ul class="list-group">
+        <li
+          *ngFor="let doc of searchResults"
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          {{ doc.fileName }} ({{ doc.pageCount }} Seiten)
+
+          <!-- Button: Ansehen (bisher)
+          <button (click)="viewDocument(doc.fileName)" class="btn btn-info btn-sm">
+            Ansehen
+          </button> -->
+
+          <!-- Button: Download (neu), öffnet in neuem Tab -->
+          <a
+            [attr.href]="'http://localhost:8081/document/' + doc.id"
+            target="_blank"
+            class="btn btn-success btn-sm"
+            style="margin-left: 0.5rem;"
+          >
+            <!-- Symbol optional (z. B. FontAwesome) -->
+            <!-- <i class="fa fa-download"></i> -->
+            Ansehen
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="searchResults && searchResults.length === 0" class="alert alert-warning">
+      Keine Treffer gefunden.
+    </div>
+  </div>
+
+  <!-- Bereich: OCR-Suche -->
+  <div class="mt-5">
+    <h2>OCR-Suchergebnisse (Text-Inhalt):</h2>
+    <div *ngIf="ocrResults && ocrResults.length > 0">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let doc of ocrResults">
+          <strong>{{ doc.filename }}</strong>
+          <p class="mb-0">{{ doc.text }}</p>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="ocrResults && ocrResults.length === 0" class="alert alert-warning">
+      Keine OCR-Treffer gefunden.
+    </div>
+  </div>
+
+  <!-- PDF-Anzeige: Nur wenn pdfContent != null -->
+  <div *ngIf="pdfContent" class="mt-4">
+    <h2>Dokumentanzeige:</h2>
+    <object [data]="pdfContent" type="application/pdf" width="600" height="500">
+      <p>
+        PDF kann nicht inline angezeigt werden.
+        <a [attr.href]="pdfContent" target="_blank">Hier klicken, um das PDF herunterzuladen.</a>
+      </p>
+    </object>
+
+    <!-- NEUE Schaltfläche für das PDF in einem neuen Tab -->
+    <button class="btn btn-primary mt-2">
+      <!-- Hier kein routerLink, sondern normaler Link via [attr.href] -->
+      <a
+        [attr.href]="pdfContent"
+        target="_blank"
+        style="color:white; text-decoration:none;"
+      >
+        In neuem Tab öffnen
+      </a>
+    </button>
+  </div>
+</div>

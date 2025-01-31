@@ -3,11 +3,11 @@ info:
   title: Paperless
   version: "1"
 servers:
-- url: http://localhost:8081
+  - url: http://localhost:8081
 tags:
-- name: upload
-- name: search
-- name: management
+  - name: upload
+  - name: search
+  - name: management
 paths:
   /upload:
     post:
@@ -23,12 +23,12 @@ paths:
           description: The internet said so
       summary: Uploads a document
       tags:
-      - upload
+        - upload
       x-content-type: multipart/form-data
       x-accepts:
-      - application/json
+        - application/json
       x-tags:
-      - tag: upload
+        - tag: upload
   /helloworld:
     get:
       responses:
@@ -41,7 +41,7 @@ paths:
           description: "Hello, World!"
       summary: Test response
       x-accepts:
-      - text/plain
+        - text/plain
 components:
   schemas:
     _upload_post_request:
@@ -53,5 +53,5 @@ components:
           example: A description for the file
           type: string
       required:
-      - file
+        - file
       type: object

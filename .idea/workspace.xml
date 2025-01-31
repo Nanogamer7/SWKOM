@@ -4,9 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="d19c047b-4399-4056-890d-e052f1116ae0" name="Changes" comment="changed rabbitmq image to :management">
-      <change afterPath="$PROJECT_DIR$/dbHealthCheck.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/OcrSearchController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/dal/repositories/BackendApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/dal/repositories/RFC3339DateFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/elasticsearch/OcrDocument.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/elasticsearch/OcrDocumentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/BackendApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/RFC3339DateFormat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/DocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/DocumentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/HelloworldApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/HelloworldApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/UploadApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/UploadApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/UploadApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/api/UploadApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/configuration/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/configuration/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/configuration/MinioConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/configuration/MinioConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/configuration/SpringDocConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/configuration/SpringDocConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/dal/models/DocumentMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/dal/models/DocumentMetadata.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/dal/repositories/DocumentMetadataRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/at/fhtw/paperless/dal/repositories/DocumentMetadataRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/openapi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/openapi.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbHealthCheck.sh" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/page-two/page-two.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/page-two/page-two.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/page-two/page-two.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/page-two/page-two.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ocr/src/main/java/at/fhtw/paperless/ocr/OcrApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ocr/src/main/java/at/fhtw/paperless/ocr/OcrApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ocr/src/main/java/at/fhtw/paperless/ocr/QueueListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/ocr/src/main/java/at/fhtw/paperless/ocr/QueueListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ocr/src/main/java/at/fhtw/paperless/ocr/entities/OCRDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/ocr/src/main/java/at/fhtw/paperless/ocr/entities/OCRDocument.java" afterDir="false" />
+=======
+    <list default="true" id="d19c047b-4399-4056-890d-e052f1116ae0" name="Changes" comment="updated gitignore">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> 3a8df4df (stuff)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,23 +77,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;MoDev&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/freezarite/IdeaProjects/SWKOM/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/mohsan/Downloads/SWKOM/frontend/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "beniDev",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "markusDev",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/freezarite/IdeaProjects/SWKOM/backend",
+    "last_opened_file_path": "/home/freezarite/IdeaProjects/SWKOM/ocr",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Users/mohsan/Downloads/SWKOM/frontend/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
+>>>>>>> 3a8df4df (stuff)
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/app/home" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
-      <module name="SWKOM" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -74,8 +132,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
       </set>
     </attachedChunks>
   </component>
@@ -90,6 +148,15 @@
       <workItem from="1730371387771" duration="1381000" />
       <workItem from="1730555697493" duration="1814000" />
       <workItem from="1730724309605" duration="302000" />
+      <workItem from="1734275015516" duration="120000" />
+<<<<<<< HEAD
+      <workItem from="1734275167668" duration="13837000" />
+      <workItem from="1737386197045" duration="15312000" />
+      <workItem from="1737563203965" duration="15052000" />
+=======
+      <workItem from="1734275167668" duration="12604000" />
+      <workItem from="1735912982146" duration="994000" />
+>>>>>>> 3a8df4df (stuff)
     </task>
     <task id="LOCAL-00001" summary="updated docker-compose.yml to also setup a database container using postgres and defining the port as 5432">
       <option name="closed" value="true" />
@@ -115,7 +182,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730556909739</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="updated gitignore">
+      <option name="closed" value="true" />
+      <created>1735913659512</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1735913659512</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +200,7 @@
     <MESSAGE value="updated docker-compose.yml to also setup a database container using postgres and defining the port as 5432" />
     <MESSAGE value="added rabbitmq container to docker-compose.yml" />
     <MESSAGE value="changed rabbitmq image to :management" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed rabbitmq image to :management" />
+    <MESSAGE value="updated gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated gitignore" />
   </component>
 </project>

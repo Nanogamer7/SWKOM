@@ -3,8 +3,9 @@ FROM node:21-alpine AS build
 RUN npm install -g @angular/cli
 
 WORKDIR /app
-COPY . .
+COPY package.json package-lock.json ./
 RUN npm install
+COPY . .
 RUN ng build --configuration development
 
 # Stage 2: Serve the Angular app using Nginx

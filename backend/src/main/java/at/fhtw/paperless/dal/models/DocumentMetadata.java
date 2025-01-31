@@ -1,6 +1,8 @@
 package at.fhtw.paperless.dal.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,6 +21,7 @@ public class DocumentMetadata {
     private String fileName;
     private String filePath;
     private String fileSize;
+    private boolean scanned = false;
 
     private String title;
     private String author;
