@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class QueueListener {
             //Convert PDF to image as tesseract does not support pdfs
             List<BufferedImage> images = convertPDFToImage(stream);
 
-            String text = exctractTextFromImages(images);
+            String text = extractTextFromImages(images);
             log.info("Finished processing");
 
             saveToElasticSearch(message, text);
@@ -60,7 +61,7 @@ public class QueueListener {
         }
     }
 
-    private List<BufferedImage> convertPDFToImage(InputStream inputStream) throws IOException {
+    protected List<BufferedImage> convertPDFToImage(InputStream inputStream) throws IOException {
         PDDocument pdf = PDDocument.load(inputStream);
         PDFRenderer renderer = new PDFRenderer(pdf);
 
@@ -92,7 +93,7 @@ public class QueueListener {
         }
     }
 
-    private String exctractTextFromImages(List<BufferedImage> images) {
+    protected String extractTextFromImages(List<BufferedImage> images) {
         StringBuilder output = new StringBuilder();
 
         for(BufferedImage image : images) {
