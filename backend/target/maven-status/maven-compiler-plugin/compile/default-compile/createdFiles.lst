@@ -1,5 +1,6 @@
 at/fhtw/paperless/api/HelloworldApi.class
 at/fhtw/paperless/api/DocumentController.class
+at/fhtw/paperless/elasticsearch/OcrDocument.class
 at/fhtw/paperless/dal/repositories/DocumentMetadataRepository.class
 at/fhtw/paperless/configuration/RabbitMQConfig.class
 at/fhtw/paperless/configuration/SpringDocConfiguration.class
@@ -9,7 +10,9 @@ at/fhtw/paperless/configuration/CorsConfig$1.class
 at/fhtw/paperless/api/UploadApi.class
 at/fhtw/paperless/RFC3339DateFormat.class
 at/fhtw/paperless/configuration/CorsConfig.class
+at/fhtw/paperless/api/OcrSearchController.class
 at/fhtw/paperless/api/SearchController.class
+at/fhtw/paperless/elasticsearch/OcrDocumentRepository.class
 at/fhtw/paperless/api/HelloworldApiController.class
 at/fhtw/paperless/configuration/MinioConfig.class
 at/fhtw/paperless/api/UploadApiController.class

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface DocumentMetadataRepository extends JpaRepository<DocumentMetadata, UUID> {
-    // Diese Methode fügt die Suchfunktion hinzu
     List<DocumentMetadata> findByFileNameContainingIgnoreCase(String term);
 
     @Modifying

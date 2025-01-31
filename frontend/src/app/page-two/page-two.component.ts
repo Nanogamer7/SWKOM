@@ -9,16 +9,13 @@ import { HttpClient } from '@angular/common/http';
 export class PageTwoComponent {
   searchTerm: string = '';
 
-  // Bisherige Suche (Datenbank-Suche)
   searchResults: any[] = [];
   pdfContent: string | null = null;
 
-  // Neu: für OCR-Ergebnisse
   ocrResults: any[] = [];
 
   constructor(private http: HttpClient) {}
 
-  // Bestehende Methode für DB-Suche (Dateiname)
   searchDocuments() {
     if (!this.searchTerm) {
       return;
@@ -40,7 +37,6 @@ export class PageTwoComponent {
       );
   }
 
-  // NEU: OCR-Suche
   searchOcrDocuments() {
     if (!this.searchTerm) {
       return;
@@ -50,7 +46,6 @@ export class PageTwoComponent {
       .get<any[]>(`http://localhost:8081/search/by_content?term=${encodeURIComponent(this.searchTerm)}`)
       .subscribe(
         (data) => {
-          // Hier speichern wir die Treffer in ocrResults
           this.ocrResults = data;
           console.log('OCR-Suchergebnisse:', data);
         },
@@ -69,20 +64,14 @@ export class PageTwoComponent {
     this.http.get(`http://localhost:8081/document/${encodeURIComponent(fileId)}`, {
       responseType: 'blob'
     }).subscribe(blob => {
-        // 1) Prüfe Größe und Typ (nur fürs Debugging)
         console.log("blob size =", blob.size);
         console.log("blob type =", blob.type);
 
-        // 2) Manuell als "application/pdf" deklarieren
-        // Falls dein Server es korrekt liefert, kannst du
-        // das eigentlich weglassen. Hier zur Sicherheit:
         const pdfBlob = new Blob([blob], { type: "application/pdf" });
 
-        // 3) Blob-URL generieren
         const blobUrl = URL.createObjectURL(pdfBlob);
         console.log("blobUrl =", blobUrl);
 
-        // 4) Zuweisen an Variable in der Component
         this.pdfContent = blobUrl;
       },
       error => {

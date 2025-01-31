@@ -1,5 +1,6 @@
 package at.fhtw.paperless.dal.elasticsearch;
 
+import at.fhtw.paperless.dal.models.OcrDocument;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 import java.util.List;

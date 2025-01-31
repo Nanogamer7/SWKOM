@@ -10,6 +10,13 @@
             [disabled]="!selectedFile"
             class="btn btn-success"
             style="cursor: pointer;">Hochladen</button>
-    <div *ngIf="uploadMessage" class="mt-3 alert alert-info">{{ uploadMessage }}</div>
+
+    <div *ngIf="uploadMessage" class="mt-3 alert alert-info">
+      {{ uploadMessage }}
+
+      <button (click)="goToSearch()" class="btn btn-primary mt-2">
+        Zur Suche
+      </button>
+    </div>
   </div>
 </div>

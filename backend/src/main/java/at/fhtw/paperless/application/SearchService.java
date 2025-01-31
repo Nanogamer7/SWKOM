@@ -1,6 +1,6 @@
 package at.fhtw.paperless.application;
 
-import at.fhtw.paperless.dal.elasticsearch.OcrDocument;
+import at.fhtw.paperless.dal.models.OcrDocument;
 import at.fhtw.paperless.dal.elasticsearch.OcrDocumentRepository;
 import at.fhtw.paperless.dal.models.DocumentMetadata;
 import at.fhtw.paperless.dal.repositories.DocumentMetadataRepository;
@@ -23,6 +23,7 @@ public class SearchService {
     public List<OcrDocument> searchContent(String searchTerm) {
         return  ocrDocumentRepository.findByTextContainingIgnoreCase(searchTerm)
                 .stream()
+                .peek(item -> item.setId(UUID.fromString(item.getFilename()))) // ugly af
                 .peek(item ->
                         item.setFilename(
                                 documentMetadataRepository.findById(UUID.fromString(item.getFilename()))

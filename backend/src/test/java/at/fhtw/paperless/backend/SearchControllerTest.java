@@ -1,7 +1,7 @@
 package at.fhtw.paperless.backend;
 
 import at.fhtw.paperless.application.SearchService;
-import at.fhtw.paperless.dal.elasticsearch.OcrDocument;
+import at.fhtw.paperless.dal.models.OcrDocument;
 import at.fhtw.paperless.dal.models.DocumentMetadata;
 import at.fhtw.paperless.rest.controller.SearchController;
 import org.junit.jupiter.api.Test;

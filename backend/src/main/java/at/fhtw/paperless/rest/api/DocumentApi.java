@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -46,13 +47,25 @@ public interface DocumentApi {
 
     @GetMapping("/{uuid}")
     @Operation(
-            summary = "Download a pdf document",
-            description = "Download a PDF document by it's name"
+            summary = "VIew a pdf document",
+            description = "View a PDF document by its UUID"
     )
     @ApiResponse(
             responseCode = "200",
             description = "The requested file",
             content = @Content(mediaType = "application/pdf")
     )
-    ResponseEntity<byte[]> downloadDocument(@PathVariable UUID uuid);
+    ResponseEntity<Resource> viewDocument(@PathVariable UUID uuid);
+
+    @GetMapping("/{uuid}/download")
+    @Operation(
+            summary = "Download a pdf document",
+            description = "Download a PDF document by its UUID"
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "The requested file",
+            content = @Content(mediaType = "application/pdf")
+    )
+    ResponseEntity<Resource> downloadDocument(@PathVariable UUID uuid);
 }

@@ -1,6 +1,6 @@
 package at.fhtw.paperless.rest.api;
 
-import at.fhtw.paperless.dal.elasticsearch.OcrDocument;
+import at.fhtw.paperless.dal.models.OcrDocument;
 import at.fhtw.paperless.dal.models.DocumentMetadata;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router'; // <-- Neu
 
 @Component({
   selector: 'app-page-one',
@@ -10,7 +11,7 @@ export class PageOneComponent {
   selectedFile: File | null = null;
   uploadMessage: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   onFileSelected(event: Event) {
     const target = event.target as HTMLInputElement;
@@ -35,5 +36,9 @@ export class PageOneComponent {
         this.uploadMessage = 'Fehler beim Hochladen der Datei.';
       }
     );
+  }
+
+  goToSearch() {
+    this.router.navigate(['/search']);
   }
 }

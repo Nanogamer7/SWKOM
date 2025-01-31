@@ -2,12 +2,11 @@
 package at.fhtw.paperless.rest.controller;
 
 import at.fhtw.paperless.application.SearchService;
-import at.fhtw.paperless.dal.elasticsearch.OcrDocument;
+import at.fhtw.paperless.dal.models.OcrDocument;
 import at.fhtw.paperless.dal.models.DocumentMetadata;
 import at.fhtw.paperless.rest.api.SearchApi;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
