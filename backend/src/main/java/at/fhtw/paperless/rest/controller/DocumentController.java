@@ -3,7 +3,7 @@ package at.fhtw.paperless.rest.controller;
 import at.fhtw.paperless.application.DocumentService;
 import at.fhtw.paperless.rest.api.DocumentApi;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.java.Log;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,12 +16,13 @@ import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
-@Slf4j
+@Log
 public class DocumentController implements DocumentApi {
     private final DocumentService documentService;
 
     @Override
     public ResponseEntity<?> upload(MultipartFile file, String description) {
+        log.info("Received a request to upload a file " + file.getOriginalFilename() + " with description " + description);
         if (file.isEmpty() || !Objects.equals(file.getContentType(), "application/pdf")) {
             return ResponseEntity.badRequest().body("File is empty or not a PDF.");
         }
@@ -35,6 +36,7 @@ public class DocumentController implements DocumentApi {
     }
 
     public ResponseEntity<byte[]> downloadDocument(@PathVariable String filename) {
+        log.info("Received a request to download a file " + filename);
         try {
             byte[] content = documentService.getFile(filename);
 

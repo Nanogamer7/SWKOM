@@ -5,31 +5,28 @@ import at.fhtw.paperless.ocr.entities.OCRDocument;
 import at.fhtw.paperless.ocr.repositories.OCRDocumentRepository;
 import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
-import io.minio.errors.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.rendering.PDFRenderer;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.rendering.PDFRenderer;
 
 
 
 
 @Component
 @RequiredArgsConstructor
+@Log
 public class QueueListener {
 
     private final MinioClient minioClient;
@@ -38,8 +35,7 @@ public class QueueListener {
 
     @RabbitListener(queues = RabbitMQConfig.QUEUE_NAME)
     public void receive(String message) {
-
-        System.out.println(message);
+        log.info("Received message: " + message);
 
         try (InputStream stream = minioClient.getObject(GetObjectArgs
                 .builder()
@@ -52,15 +48,14 @@ public class QueueListener {
             List<BufferedImage> images = convertPDFToImage(stream);
 
             String text = exctractTextFromImages(images);
-
-            System.out.println(text);
+            log.info("Finished processing");
 
             saveToElasticSearch(message, text);
 
             rabbitTemplate.convertAndSend(RabbitMQConfig.OUTPUT_QUEUE_NAME, message);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.severe(e.getMessage());
             throw new RuntimeException(e);
         }
     }

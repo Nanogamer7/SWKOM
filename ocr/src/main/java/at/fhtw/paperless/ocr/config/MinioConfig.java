@@ -1,6 +1,6 @@
 package at.fhtw.paperless.ocr.config;
 
-import io.minio.*;
+import io.minio.MinioClient;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
