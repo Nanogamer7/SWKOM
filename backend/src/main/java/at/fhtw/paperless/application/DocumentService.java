@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Objects;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -33,38 +33,44 @@ public class DocumentService {
             minio.makeBucket(MakeBucketArgs.builder().bucket("paperless").build());
         }
 
-        minio.putObject(
-                PutObjectArgs
-                        .builder()
-                        .bucket("paperless")
-                        .object(file.getOriginalFilename()) // TODO: ensure no file path
-                        .stream(file.getInputStream(), file.getSize(), -1)
-                        .build()
-        );
+        DocumentMetadata metadata = null;
 
         // Load PDF file
         PDDocument document = Loader.loadPDF(file.getBytes());
-        DocumentMetadata metadata = getDocumentMetadata(file, document);
+        metadata = getDocumentMetadata(file, document);
 
         // Save metadata to the database
         documentMetadataRepository.save(metadata);
 
+        minio.putObject(
+                PutObjectArgs
+                        .builder()
+                        .bucket("paperless")
+                        .object(metadata.getId().toString()) // TODO: ensure no file path
+                        .stream(file.getInputStream(), file.getSize(), -1)
+                        .build()
+        );
+
         document.close();
 
-        rabbitTemplate.convertAndSend("documentQueue", Objects.requireNonNull(file.getOriginalFilename()));
-        log.info("Message sent to RabbitMQ for document: {}", file.getOriginalFilename());
+        rabbitTemplate.convertAndSend("documentQueue", metadata.getId().toString());
+        log.info("Message sent to RabbitMQ for document: {}", metadata.getId().toString());
 
     }
 
-    public byte[] getFile(String filename) throws IOException, ServerException, InsufficientDataException, ErrorResponseException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+    public byte[] getFile(UUID uuid) throws IOException, ServerException, InsufficientDataException, ErrorResponseException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
         try (InputStream is = minio.getObject(
                 GetObjectArgs.builder()
                         .bucket("paperless")
-                        .object(filename)
+                        .object(uuid.toString())
                         .build())) {
 
             return is.readAllBytes();
         }
+    }
+
+    public DocumentMetadata getMetadata(UUID uuid) {
+        return documentMetadataRepository.findById(uuid).orElse(null);
     }
 
     private static DocumentMetadata getDocumentMetadata(MultipartFile file, PDDocument document) {

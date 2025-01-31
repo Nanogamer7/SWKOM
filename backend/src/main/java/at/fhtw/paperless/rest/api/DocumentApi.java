@@ -9,10 +9,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.UUID;
+
 @RequestMapping("/document")
+@Validated
 public interface DocumentApi {
 
     @PostMapping
@@ -40,7 +44,7 @@ public interface DocumentApi {
             @Parameter(name = "description", description = "") @Valid @RequestParam(value = "description", required = false) String description
     );
 
-    @GetMapping("/{filename}")
+    @GetMapping("/{uuid}")
     @Operation(
             summary = "Download a pdf document",
             description = "Download a PDF document by it's name"
@@ -50,5 +54,5 @@ public interface DocumentApi {
             description = "The requested file",
             content = @Content(mediaType = "application/pdf")
     )
-    ResponseEntity<byte[]> downloadDocument(@PathVariable String filename);
+    ResponseEntity<byte[]> downloadDocument(@PathVariable UUID uuid);
 }

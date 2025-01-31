@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,14 @@ public class SearchService {
     }
 
     public List<OcrDocument> searchContent(String searchTerm) {
-        return ocrDocumentRepository.findByTextContainingIgnoreCase(searchTerm);
+        return  ocrDocumentRepository.findByTextContainingIgnoreCase(searchTerm)
+                .stream()
+                .peek(item ->
+                        item.setFilename(
+                                documentMetadataRepository.findById(UUID.fromString(item.getFilename()))
+                                        .map(DocumentMetadata::getFileName)
+                                        .orElse("<unnamed>")
+                        )
+                ).toList();
     }
 }

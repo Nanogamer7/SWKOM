@@ -65,8 +65,8 @@ export class PageTwoComponent {
   }
 
 // Bestehende Methode für PDF-Anzeige
-  viewDocument(fileName: string) {
-    this.http.get(`http://localhost:8081/document/${encodeURIComponent(fileName)}`, {
+  viewDocument(fileId: string) {
+    this.http.get(`http://localhost:8081/document/${encodeURIComponent(fileId)}`, {
       responseType: 'blob'
     }).subscribe(blob => {
         // 1) Prüfe Größe und Typ (nur fürs Debugging)
